@@ -1,0 +1,47 @@
+<%= form_for @user do |f| %>
+  <% if @user.errors.any? %>
+    <div class="row panel callout radius">
+      <p>Aşşağıdaki Hataları Düzeltip Tekrar Deneyiniz.</p>
+      <ul class="square">
+        <% @user.errors.full_messages.each do |m| %>
+          <li><%= m %></li>
+        <% end %>
+      </ul>
+    </div>
+    <% end %>
+<div class="row">
+  <div class="large-6 columns">
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name %>
+  </div>
+
+  <div class="large-6 columns">
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name %>
+  </div>
+
+  <div class="large-12 columns">
+    <%= f.label :username %>
+    <%= f.text_field :username %>
+  </div>
+
+  <div class="large-12 columns">
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+  </div>
+
+  <div class="large-12 columns">
+    <%= f.label :password %>
+    <%= f.text_field :password %>
+  </div>
+
+  <div class="large-12 columns">
+    <%= f.label :password_confirmation%>
+    <%= f.text_field :password_confirmation %>
+  </div>
+
+  <div class="large-12 columns">
+    <%= f.submit "Kayıt Ol", class: 'medium button right' %>
+  </div>
+</div>
+<% end %>
