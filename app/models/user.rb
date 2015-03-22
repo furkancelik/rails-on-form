@@ -10,5 +10,15 @@ class User < ActiveRecord::Base
             uniqueness: { case_sensitive: false },
             email: true
   validates :password, presence: true,
-            length: { minimum: 6 }
+            length: { minimum: 6 },
+            on: :create
+
+  def name
+    "#{first_name} #{last_name}"
+  end
+
+  def to_param
+    username
+  end
+
 end

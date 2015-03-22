@@ -1,0 +1,30 @@
+<% content_for(:content) do %>
+<div class="row">
+  <div class="large-12 columns">
+    <div class="large-2 columns">
+      <img src="http://placehold.it/160x160" class="profile-image" alt="">
+    </div>
+
+    <div class="large-10 columns">
+      <h2><%= @user.name %></h2>
+      <p><%= @user.email %></p>
+      <div class="button-bar">
+        <ul class="button-group radius">
+          <li><%= link_to "Konular", profile_path(@user, sayfa: 'konular'), class: 'small button secondary' %></li>
+          <li><%= link_to "Yorumlar", profile_path(@user, sayfa:'yorumlar'), class: 'small button secondary' %></li>
+          <li><%= link_to "Profilimi Düzenle", edit_profile_path(@user), class: 'small button secondary' %></li>
+
+          <%= form_tag(@user, method: :delete) do %>
+              <button type="submit" style="height: 45px" class="small button alert">Hesabımı Sil</button>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+
+    <div class="large-12 columns">
+      <%= yield(:profile_content) %>
+    </div>
+  </div>
+</div>
+<% end %>
+<%= render template: "layouts/application" %>

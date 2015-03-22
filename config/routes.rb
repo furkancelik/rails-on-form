@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get '/:id', to: 'users#show', as: :profile
+  get '/:id/edit', to: 'users#edit', as: :edit_profile
   get '/users/new', to: redirect('/kaydol')
   resources :users, except: :index
   get '/kaydol', to: 'users#new', as: :register
