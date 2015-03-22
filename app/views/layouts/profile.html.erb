@@ -12,10 +12,11 @@
         <ul class="button-group radius">
           <li><%= link_to "Konular", profile_path(@user, sayfa: 'konular'), class: 'small button secondary' %></li>
           <li><%= link_to "Yorumlar", profile_path(@user, sayfa:'yorumlar'), class: 'small button secondary' %></li>
-          <li><%= link_to "Profilimi Düzenle", edit_profile_path(@user), class: 'small button secondary' %></li>
-
-          <%= form_tag(@user, method: :delete) do %>
-              <button type="submit" style="height: 45px" class="small button alert">Hesabımı Sil</button>
+          <%  if current_user == @user %>
+              <li><%= link_to "Profilimi Düzenle", edit_profile_path(@user), class: 'small button secondary' %></li>
+              <%= form_tag(@user, method: :delete) do %>
+                  <button type="submit" style="height: 45px" class="small button alert">Hesabımı Sil</button>
+              <% end %>
           <% end %>
         </ul>
       </div>
