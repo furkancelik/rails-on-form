@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
 
+  get '/kaydol', to: 'users#new', as: :register
   get '/:id', to: 'users#show', as: :profile
   get '/:id/edit', to: 'users#edit', as: :edit_profile
   get '/users/new', to: redirect('/kaydol')
   resources :users, except: :index
-  get '/kaydol', to: 'users#new', as: :register
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

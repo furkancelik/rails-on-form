@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :select_user, only: [:show, :edit, :update, :destroy]
+
   def new
     @user = User.new
   end
@@ -7,8 +8,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      flash[:notice] = "Aramıza Hoş Geldin!"
-      redirect_to profile_path(@user)
+      redirect_to profile_path(@user), notice: "Aramıza Hoş Geldin!"
     else
       render :new
     end
@@ -36,8 +36,7 @@ class UsersController < ApplicationController
     params[:user].except!(:password,:password_confirmation) if params[:user][:password] == "" && params[:user][:password_confirmation] == ""
 
     if @user.update(params.require(:user).permit!)
-      flash[:notice] = "Profil Bilgileriniz Güncellendi"
-      redirect_to profile_path(@user)
+      redirect_to profile_path(@user), notice: "Profil Bilgileriniz Güncellendi"
     else
       render :edit, layout: "profile"
     end
