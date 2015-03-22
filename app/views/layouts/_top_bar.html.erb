@@ -7,11 +7,21 @@
     </ul>
     <section class="top-bar-section">
       <ul class="right">
-        <li class="divider"></li>
-        <li><%= link_to "Kaydol", register_path  %></li>
-        <li class="divider"></li>
-        <li><a href="#">Oturum Aç</a> </li>
-        <li class="divider"></li>
+        <% if signed_in? %>
+            <li><%= link_to "Hoş Geldin #{current_user.username}!", profile_path(@user)  %></li>
+            <li class="divider"></li>
+            <li>
+            <%= form_tag(logout_path, method: "delete") do %>
+                <%= submit_tag("Çıkış Yap!", class: 'small button', style: 'background:#333;') %>
+            <% end %>
+            </li>
+            <li class="divider"></li>
+        <% else %>
+            <li><%= link_to "Kaydol", register_path  %></li>
+            <li class="divider"></li>
+            <li><a href="#">Oturum Aç</a> </li>
+            <li class="divider"></li>
+        <% end %>
       </ul>
     </section>
   </nav>

@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  resource :session ,only: [:new, :create, :destroy]
+  get '/oturumac', to: 'sessions#new', as: :login
+  delete '/cikisyap', to: 'sessions#destroy', as: :logout
+
   get '/kaydol', to: 'users#new', as: :register
   get '/:id', to: 'users#show', as: :profile
   get '/:id/edit', to: 'users#edit', as: :edit_profile
